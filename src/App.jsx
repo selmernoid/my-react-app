@@ -1,34 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useMemo } from 'react'
+import { marked } from 'marked'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState('')
+
+  const htmlOutput = useMemo(() => {
+    if (!input.trim()) {
+      return '<p class="placeholder">Your markdown content will appear here...</p>'
+    }
+    return marked(input)
+  }, [input])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <div className="split-container">
+        <div className="left-section">
+          <textarea
+            className="editor"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your markdown here...
+
+# Heading 1
+## Heading 2
+
+**Bold text** and *italic text*
+
+- Unordered list item
+- Another item
+
+1. Ordered list item
+2. Another item
+
+[Link text](https://example.com)
+
+`inline code`
+
+```
+code block
+```"
+          />
+        </div>
+        <div className="right-section">
+          <div
+            className="output markdown-content"
+            dangerouslySetInnerHTML={{ __html: htmlOutput }}
+          />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.claude.com)",
+      "mcp__github__create_repository",
+      "Bash(gh auth:*)",
+      "Bash(npx create-react-app:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "mcp__github__push_files",
+      "mcp__github__create_or_update_file",
+      "Bash(npm run dev:*)",
+      "Bash(rm:*)",
+      "Bash(npm install:*)",
+      "Bash(yarn install)",
+      "Bash(yarn dev)",
+      "Bash(yarn add:*)",
+      "Bash(pkill:*)",
+      "Bash(find:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
